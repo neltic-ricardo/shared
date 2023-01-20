@@ -1,0 +1,9 @@
+<Project>
+    <PropertyGroup>
+        <RootNamespace>$(SolutionName).$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+        <AssemblyName>$(SolutionName).$(MSBuildProjectName.Replace(" ", "_"))</AssemblyName>
+        <Company>Neltic</Company>
+        <Authors>Neltic</Authors>
+        <Copyright>© Neltic Products. All rights reserved.</Copyright>
+    </PropertyGroup>
+</Project>

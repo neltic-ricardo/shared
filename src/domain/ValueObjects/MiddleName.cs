@@ -1,0 +1,40 @@
+﻿using Neltic.Shared.Domain.Errors;
+using Neltic.Shared.Domain.Validator;
+
+namespace Neltic.Shared.Domain.ValueObjects;
+public class MiddleName : ValueObject
+{
+    public const int MaxLength = 50;
+
+    private MiddleName(string value)
+    {
+        Value = value;
+    }
+
+    private MiddleName()
+    {
+    }
+
+    public string Value { get; private set; }
+
+    public static Result<MiddleName> Create(string middleName)
+    {
+        if (string.IsNullOrWhiteSpace(middleName))
+        {
+            return Result.Failure<MiddleName>(MiddleNameErrors.Empty);
+        }
+
+        if (middleName.Length > MaxLength)
+        {
+            return Result.Failure<MiddleName>(MiddleNameErrors.TooLong) ;
+        }
+
+        return new MiddleName(middleName);
+    }
+
+    public override IEnumerable<object> GetAtomicValues()
+    {
+        yield return Value;
+    }
+}
+

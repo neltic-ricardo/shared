@@ -6,8 +6,10 @@
     <Nullable>enable</Nullable>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Title>Neltic Product Shared</Title>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Title>Neltic Product Shared Api</Title>       
+    <PackageTags>shared, Api</PackageTags>       
+    <Version>$(VersionPrefix)</Version>       
+    <Description>Neltic Product Shared Api Components</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,22 +19,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MediatR" Version="11.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\application\Application.csproj" />
     <ProjectReference Include="..\domain\Domain.csproj" />
-    <ProjectReference Include="..\infrastructure\Infrastructure.csproj" />
-    <ProjectReference Include="..\persistence\Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-
-using Neltic.Shared.Infrastructure.Authentication.OptionsSetup;
-
 using System.Text;
 
-namespace Neltic.Shared.Api.OptionsSetup;
+namespace Neltic.Shared.Infrastructure.Authentication.OptionsSetup;
 
 public class JwtBearerOptionsSetup : IPostConfigureOptions<JwtBearerOptions>
 {

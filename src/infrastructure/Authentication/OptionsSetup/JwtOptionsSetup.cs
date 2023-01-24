@@ -1,10 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
-using Neltic.Shared.Infrastructure.Authentication.OptionsSetup;
-
-namespace Neltic.Shared.Api.OptionsSetup;
-
+namespace Neltic.Shared.Infrastructure.Authentication.OptionsSetup;
 
 public class JwtOptionsSetup : IConfigureOptions<JwtOptions>
 {

@@ -5,5 +5,15 @@
         <Company>Neltic</Company>
         <Authors>Neltic</Authors>
         <Copyright>© Neltic Products. All rights reserved.</Copyright>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryType>git</RepositoryType>
+        <PackageOutputPath>..\..\artifacts</PackageOutputPath>
+        <BaseOutputPath>..\..\artifacts</BaseOutputPath>
+        <OutputPath>..\..\artifacts\</OutputPath>
+        <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+        <UseCommonOutputDirectory>false</UseCommonOutputDirectory>
+        <RepositoryUrl>https://github.com/neltic-ricardo/shared.git</RepositoryUrl>
     </PropertyGroup>
 </Project>

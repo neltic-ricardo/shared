@@ -1,0 +1,3 @@
+# README #
+
+Neltic.Shared.Api

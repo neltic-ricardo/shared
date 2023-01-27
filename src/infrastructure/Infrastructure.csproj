@@ -8,6 +8,8 @@
     <Title>Neltic Product Shared infrastructure</Title>
     <Description>Neltic Product Shared infrastructure</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>shared, Infrastructure</PackageTags>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

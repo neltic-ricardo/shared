@@ -8,6 +8,8 @@
     <Title>Neltic Product Shared Domain</Title>
     <Description>Neltic Product Shared Domain</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>shared, Domain</PackageTags>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

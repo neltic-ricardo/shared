@@ -8,6 +8,8 @@
     <Title>Neltic Product Shared Application</Title>
     <Description>Neltic Product Shared Application Components</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>shared, Application</PackageTags>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

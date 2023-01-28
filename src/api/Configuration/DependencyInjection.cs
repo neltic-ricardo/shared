@@ -10,22 +10,24 @@ public static class DependencyInjection
         IConfiguration configuration,
         params Assembly[] assemblies)
     {
-        IEnumerable<IServiceInstaller> serviceInstallers = assemblies
-            .SelectMany(a => a.DefinedTypes)
-            .Where(IsAssignableToType<IServiceInstaller>)
+        var type = typeof(IServiceInstaller);
+
+        var serviceInstallers = assemblies
+            .SelectMany(a => a.ExportedTypes)
+            .Where(a => IsAssignableToType<IServiceInstaller>(a))
             .Select(Activator.CreateInstance)
             .Cast<IServiceInstaller>();
 
+
         foreach (IServiceInstaller serviceInstaller in serviceInstallers)
-        {
             serviceInstaller.Install(services, configuration);
-        }
+
 
         return services;
 
-        static bool IsAssignableToType<T>(TypeInfo typeInfo) =>
-            typeof(T).IsAssignableFrom(typeInfo) &&
-            !typeInfo.IsInterface &&
-            !typeInfo.IsAbstract;
+        static bool IsAssignableToType<T>(Type type) =>
+            typeof(T).IsAssignableFrom(type) &&
+            !type.IsInterface &&
+            !type.IsAbstract;
     }
 }

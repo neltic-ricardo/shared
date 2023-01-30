@@ -8,7 +8,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Neltic Product Shared Api</Title>       
     <PackageTags>shared, Api</PackageTags>       
-    <Version>1.2.0</Version>       
+    <Version>1.3.0</Version>       
     <Description>Neltic Product Shared Api Components</Description>
   </PropertyGroup>
 

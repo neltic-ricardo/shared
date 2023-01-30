@@ -1,9 +1,9 @@
-﻿using MediatR;
+﻿using System.Reflection;
+
+using MediatR;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
-using System.Reflection;
 
 namespace Neltic.Shared.Api.Configuration;
 public class MediatRServiceInstaller : IServiceInstaller
@@ -14,7 +14,7 @@ public class MediatRServiceInstaller : IServiceInstaller
     {
         var assemblyName = Directory
                 .EnumerateFiles(AppContext.BaseDirectory, "*Application*")
-                .First(a => a.EndsWith("dll") && !a.Contains("Shared"));
+                .First(a => a.EndsWith("dll"));
 
         var assembly = Assembly.LoadFrom(assemblyName);
 

@@ -15,7 +15,7 @@ public class MediatRServiceInstaller : IServiceInstaller
         List<Assembly> assemblies = new();
 
         var assemblyNames = Directory
-                .EnumerateFiles(AppContext.BaseDirectory, "*Application*")
+                .EnumerateFiles(AppContext.BaseDirectory, "*Neltic*")
                 .Where(a => a.EndsWith("dll"));
 
         foreach (var assemblyName in assemblyNames)

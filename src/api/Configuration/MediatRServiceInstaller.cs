@@ -12,12 +12,15 @@ public class MediatRServiceInstaller : IServiceInstaller
         IServiceCollection services, 
         IConfiguration configuration)
     {
-        var assemblyName = Directory
+        List<Assembly> assemblies = new();
+
+        var assemblyNames = Directory
                 .EnumerateFiles(AppContext.BaseDirectory, "*Application*")
-                .First(a => a.EndsWith("dll"));
+                .Where(a => a.EndsWith("dll"));
 
-        var assembly = Assembly.LoadFrom(assemblyName);
+        foreach (var assemblyName in assemblyNames)
+            assemblies.Add(Assembly.LoadFrom(assemblyName));
 
-        services.AddMediatR(assembly);
+        services.AddMediatR(assemblies.ToArray());
     }
 }

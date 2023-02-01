@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.Reflection;
+
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using Neltic.Shared.Infrastructure.Helpers;
@@ -10,7 +12,10 @@ public class ProvidersServiceInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)
     {
-        var assemblies = AssemblyHelper.LoadInfrastructureAndPersistence();
+        List<Assembly> assemblies = new();
+
+        assemblies.AddRange(AssemblyHelper.GetAssemblies("Infrastructure"));
+        assemblies.AddRange(AssemblyHelper.GetAssemblies("Persistence"));
 
         services
         .Scan(selector => selector

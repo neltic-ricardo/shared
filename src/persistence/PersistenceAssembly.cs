@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Neltic.Identity.Persistence;
+namespace Neltic.Shared.Persistence;
 
 public static class PersistenceAssembly
 {

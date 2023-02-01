@@ -9,7 +9,7 @@
     <Description>Neltic Product Shared Application Components</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>shared, Application</PackageTags>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

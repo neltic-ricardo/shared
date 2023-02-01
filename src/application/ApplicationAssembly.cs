@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Neltic.Identity.Application;
+namespace Neltic.Shared.Application;
 
 public static class ApplicationAssembly
 {

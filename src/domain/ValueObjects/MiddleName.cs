@@ -15,7 +15,7 @@ public class MiddleName : ValueObject
     {
     }
 
-    public string Value { get; private set; }
+    public string Value { get; private set; } = string.Empty;
 
     public static Result<MiddleName> Create(string middleName)
     {

@@ -7,7 +7,7 @@ namespace Neltic.Shared.Domain.Specification;
 /// <typeparam name="T">Type of entity that check this specification</typeparam>
 public class AndSpecification<T>
    : CompositeSpecification<T>
-   where T : class, new()
+   where T : class
 {
     #region Members
 

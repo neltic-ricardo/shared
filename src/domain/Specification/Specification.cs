@@ -19,7 +19,7 @@ namespace Neltic.Shared.Domain.Specification;
 /// <typeparam name="TEntity">Type of item in the criteria</typeparam>
 public abstract class Specification<TEntity>
      : ISpecification<TEntity>
-     where TEntity : class, new()
+     where TEntity : class
 {
     #region ISpecification<TEntity> Members
 

@@ -8,8 +8,7 @@
 /// comply the PI (Persistence Ignorant) principle in our Domain, we implement this interface/contract. 
 /// This interface/contract should be complied by any UoW implementation to be used with this Domain.
 /// </summary>
-public interface IUnitOfWork
-    : IDisposable
+public interface IUnitOfWork    
 {
     /// <summary>
     /// Commit all changes made in a container.

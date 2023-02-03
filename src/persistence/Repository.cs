@@ -1,5 +1,4 @@
 ﻿using System.Linq.Expressions;
-
 using Microsoft.EntityFrameworkCore;
 
 using Neltic.Shared.Domain;
@@ -16,7 +15,7 @@ public class Repository<TEntity> : IRepository<TEntity>
 {
     #region Members
 
-    IQueryableUnitOfWork _unitOfWork;
+    IQueryableContext _context;
 
     #endregion
 
@@ -25,16 +24,16 @@ public class Repository<TEntity> : IRepository<TEntity>
     /// Create a new instance of repository
     /// </summary>
     /// <param name="unitOfWork">Associated Unit Of Work</param>
-    public Repository(IQueryableUnitOfWork unitOfWork)
+    public Repository(IQueryableContext context)
     {
-        if (unitOfWork == null)
+        if (context == null)
             throw new NullReferenceException("unitOfWork");
 
-        _unitOfWork = unitOfWork;
+        _context = context;
     }
     #endregion
 
-    public IUnitOfWork UnitOfWork => _unitOfWork;
+    public IUnitOfWork UnitOfWork => _context;
 
     public virtual void Add(TEntity item)
     {
@@ -104,18 +103,18 @@ public class Repository<TEntity> : IRepository<TEntity>
     /// <param name="current"><see cref="IRepository{TValueObject}"/></param>    
     public virtual void Merge(TEntity persisted, TEntity current)
     {
-        _unitOfWork.ApplyCurrentValues(persisted, current);
+        _context.ApplyCurrentValues(persisted, current);
     }
 
     public virtual void Modify(TEntity item)
     {
-        _unitOfWork.SetModified(item);
+        _context.SetModified(item);
     }
 
     public virtual void Remove(TEntity item)
     {
         //attach item if not exist
-        _unitOfWork.Attach(item);
+        _context.SetUnchanged(item);
 
         //set as "removed"
         GetSet().Remove(item);
@@ -123,7 +122,7 @@ public class Repository<TEntity> : IRepository<TEntity>
 
     public virtual void TrackItem(TEntity item)
     {
-        _unitOfWork.Attach<TEntity>(item);
+        _context.SetUnchanged(item);
     }
 
     #region IDisposable Members
@@ -132,8 +131,8 @@ public class Repository<TEntity> : IRepository<TEntity>
     /// </summary>
     public void Dispose()
     {
-        if (_unitOfWork != null)
-            _unitOfWork.Dispose();
+        if (_context != null)
+            _context.Dispose();
     }
     #endregion
 
@@ -141,7 +140,7 @@ public class Repository<TEntity> : IRepository<TEntity>
 
     DbSet<TEntity> GetSet()
     {        
-        return _unitOfWork.CreateSet<TEntity>();
+        return _context.CreateSet<TEntity>();
     }
     #endregion
 }

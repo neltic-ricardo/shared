@@ -1,4 +1,4 @@
-﻿namespace Neltic.Shared.Persistence;
+﻿namespace Neltic.Shared.Domain;
 
 /// <summary>
 /// Base contract for support 'dialect specific queries'.

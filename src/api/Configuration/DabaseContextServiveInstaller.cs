@@ -6,6 +6,6 @@ public class DabaseContextServiveInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)
     {
-        throw new NotImplementedException();
+        
     }
 }

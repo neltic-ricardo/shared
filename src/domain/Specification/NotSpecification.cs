@@ -8,7 +8,7 @@ namespace Neltic.Shared.Domain.Specification;
 /// <typeparam name="TEntity">Type of element for this specificaiton</typeparam>
 public class NotSpecification<TEntity>
     : Specification<TEntity>
-    where TEntity : class, new()
+    where TEntity : class
 {
     #region Members
 

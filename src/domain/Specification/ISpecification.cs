@@ -10,7 +10,7 @@ namespace Neltic.Shared.Domain.Specification;
 /// </summary>
 /// <typeparam name="TEntity">Type of entity</typeparam>
 public interface ISpecification<TEntity>
-    where TEntity : class, new()
+    where TEntity : class
 {
     /// <summary>
     /// Check if this specification is satisfied by a 

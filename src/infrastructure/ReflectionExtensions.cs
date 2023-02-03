@@ -164,6 +164,14 @@ public static class ReflectionExtensions
         yield return matchingType;
     }*/
 
+    public static bool IsAssignableToType<T>(this Type type)
+    {
+        return typeof(T).IsAssignableFrom(type) &&
+                    !type.IsInterface &&
+                    !type.IsAbstract;
+    }
+           
+
     private static IEnumerable<Type> GetImplementedInterfacesToMap(Type type)
     {
         if (!type.IsGenericType)

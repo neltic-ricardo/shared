@@ -7,7 +7,7 @@ namespace Neltic.Shared.Domain.Specification;
 /// <typeparam name="TEntity">Type of entity in this specification</typeparam>
 public class TrueSpecification<TEntity>
     : Specification<TEntity>
-    where TEntity : class, new()
+    where TEntity : class
 {
     #region Specification overrides
 

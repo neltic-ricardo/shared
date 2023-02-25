@@ -16,12 +16,9 @@ public class PermissionAuthorizationPolicyProvider
     {
         AuthorizationPolicy? policy = await base.GetPolicyAsync(policyName);
 
-        if (policy is not null)
-        {
-            return policy;
-        }
-
-        return new AuthorizationPolicyBuilder()
+        return policy is not null
+            ? policy
+            : new AuthorizationPolicyBuilder()
             .AddRequirements(new PermissionRequirement(policyName))
             .Build();
     }

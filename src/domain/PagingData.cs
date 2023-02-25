@@ -6,5 +6,5 @@ public class PagingData<T>
     public int PageSize { get; set; }
     public int PageCount { get; set; }
     public int TotalPages { get; set; }
-    public List<T> Data { get;}
+    public List<T> Data { get; } = new();
 }

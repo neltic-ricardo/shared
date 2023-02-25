@@ -21,6 +21,6 @@ public class MediatRServiceInstaller : IServiceInstaller
         foreach (var assemblyName in assemblyNames)
             assemblies.Add(Assembly.LoadFrom(assemblyName));
 
-        services.AddMediatR(assemblies.ToArray());
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(assemblies.ToArray()));
     }
 }

@@ -13,12 +13,11 @@ public abstract class Entity : AuditableEntity, IEquatable<Entity>
     public int Id { get; private init; }
 
 
-    private List<INotification> _domainEvents;
+    private List<INotification> _domainEvents = new List<INotification>();
     public IReadOnlyCollection<INotification>? DomainEvents => _domainEvents?.AsReadOnly();
 
     public void AddDomainEvent(INotification eventItem)
     {
-        _domainEvents = _domainEvents ?? new List<INotification>();
         _domainEvents.Add(eventItem);
     }
 

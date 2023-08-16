@@ -44,17 +44,7 @@ public abstract class Enumeration<TEnum> : IEquatable<Enumeration<TEnum>>
 
     public static bool operator ==(Enumeration<TEnum>? a, Enumeration<TEnum>? b)
     {
-        if (a is null && b is null)
-        {
-            return true;
-        }
-
-        if (a is null || b is null)
-        {
-            return false;
-        }
-
-        return a.Equals(b);
+        return a is null && b is null || (a is not null && b is not null && a.Equals(b));
     }
 
     public static bool operator !=(Enumeration<TEnum> a, Enumeration<TEnum> b) => !(a == b);
@@ -89,28 +79,16 @@ public abstract class Enumeration<TEnum> : IEquatable<Enumeration<TEnum>>
     /// <inheritdoc />
     public virtual bool Equals(Enumeration<TEnum>? other)
     {
-        if (other is null)
-        {
-            return false;
-        }
-
-        return GetType() == other.GetType() && other.Id.Equals(Id);
+        return other is not null && GetType() == other.GetType() && other.Id.Equals(Id);
     }
 
     /// <inheritdoc />
     public override bool Equals(object? obj)
     {
-        if (obj is null)
-        {
-            return false;
-        }
-
-        if (GetType() != obj.GetType())
-        {
-            return false;
-        }
-
-        return obj is Enumeration<TEnum> otherValue && otherValue.Id.Equals(Id);
+        return obj is not null 
+            && (GetType() == obj.GetType()
+            && obj is Enumeration<TEnum> otherValue 
+            && otherValue.Id.Equals(Id));
     }
 
     /// <inheritdoc />

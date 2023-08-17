@@ -18,8 +18,8 @@
     
     <ItemGroup Label="External">
         <!--build related-->
-        <PackageReference Include="MinVer" Version="4.3.0" PrivateAssets="All" />
-
+        <PackageReference Include="MinVer" Version="4.3.0" PrivateAssets="All" />        
+        
         <!--our stuff -->
         <PackageReference Update="MediatR" Version="12.1.1" />
         <PackageReference Update="Scrutor" Version="4.2.2" />

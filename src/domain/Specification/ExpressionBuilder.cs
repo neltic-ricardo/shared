@@ -14,13 +14,14 @@ public static class ExpressionBuilder
     /// <param name="second">Expression to merge</param>
     /// <param name="merge">Function to merge</param>
     /// <returns>New merged expressions</returns>
-    public static Expression<T>? Compose<T>(this Expression<T> first, Expression<T> second, Func<Expression, Expression, Expression> merge)
+    public static Expression<T> Compose<T>(this Expression<T> first, Expression<T> second, Func<Expression, Expression, Expression> merge)
     {
-        if (first is null || second is null || merge is null)
-            return null;
-
         // build parameter map (from parameters of second to parameters of first)
-        var map = first.Parameters.Select((f, i) => new { f, s = second.Parameters[i] }).ToDictionary(p => p.s, p => p.f);
+        var map = first.Parameters.Select((f, i) => new 
+        {
+            f, 
+            s = second.Parameters[i] 
+        }).ToDictionary(p => p.s, p => p.f);
 
         // replace parameters in the second lambda expression with parameters from the first
         var secondBody = ParameterRebinder.ReplaceParameters(map, second.Body);
@@ -36,9 +37,8 @@ public static class ExpressionBuilder
     /// <param name="first">Right Expression in AND operation</param>
     /// <param name="second">Left Expression in And operation</param>
     /// <returns>New AND expression</returns>
-    public static Expression<Func<T, bool>> And<T>(this Expression<Func<T, bool>> first, Expression<Func<T, bool>> second) 
-            => first.Compose(second, Expression.And);
-    
+    public static Expression<Func<T, bool>> And<T>(this Expression<Func<T, bool>> first, Expression<Func<T, bool>> second)
+        => first.Compose(second, Expression.And);
 
     /// <summary>
     /// Or operator

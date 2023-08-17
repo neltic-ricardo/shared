@@ -1,30 +1,35 @@
 name: Publish NuGet Package
 
 on:
+  workflow_dispatch: # Allow running the workflow manually from the GitHub UI
   push:
     branches:
-      - main
-      - features/**
+      - main      
     tags:
-      - "*.*.*"
+      - '*.*.*'
   pull_request:
+    branches:
+      - '*'
+  release:
+    types:
+      - published    # Run the workflow when a new GitHub release is published
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1 
+
+defaults:
+  run:
+    shell: pwsh
 
 jobs:
   build:
-    strategy:
-      fail-fast: false
-      matrix:
-        configuration: [Debug, Release]
-
-    name: ubuntu-latest
     runs-on: ubuntu-latest
-
-    env:
-      Solution_Name: Neltic.Shared.sln
-      DOTNET_NOLOGO: true
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
-      - run: dotnet --info
+          fetch-depth: 0 # Get all history to allow automatic versioning using MinVer             
+      - name: Setup .NET # Install the .NET SDK indicated in the global.json file
+        uses: actions/setup-dotnet@v3       
+      # Create the NuGet package in the folder from the environment variable NuGetDirectory  
+      - run: dotnet build -c Release --nologo --verbosity quiet     

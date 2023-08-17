@@ -7,14 +7,11 @@
         <Copyright>© Neltic Products. All rights reserved.</Copyright>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryType>git</RepositoryType>
-        <PackageOutputPath>..\..\artifacts</PackageOutputPath>
-        <BaseOutputPath>..\..\build</BaseOutputPath>
-        <OutputPath>..\..\build\</OutputPath>
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-        <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
         <UseCommonOutputDirectory>false</UseCommonOutputDirectory>

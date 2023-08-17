@@ -15,7 +15,7 @@ public class Repository<TEntity> : IRepository<TEntity>
 {
     #region Members
 
-    IQueryableContext _context;
+    private readonly IQueryableContext _context;
 
     #endregion
 
@@ -45,7 +45,7 @@ public class Repository<TEntity> : IRepository<TEntity>
         return GetSet().Where(specification.SatisfiedBy());
     }
 
-    public TEntity Get(int id)
+    public TEntity? Get(int id)
     {
         return GetSet().Find(id);
     }

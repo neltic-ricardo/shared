@@ -1,4 +1,3 @@
-#!/bin/bash
-
-dotnet restore -s https://api.nuget.org/v3/index.json 
-dotnet build
+#!/usr/bin/env bash
+set -euo pipefail
+dotnet run --project build -- "$@"

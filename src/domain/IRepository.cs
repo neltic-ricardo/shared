@@ -63,7 +63,7 @@ public interface IRepository<TEntity> : IDisposable
     /// </summary>
     /// <param name="id">Entity key value</param>
     /// <returns></returns>
-    TEntity Get(int id);
+    TEntity? Get(int id);
 
     /// <summary>
     /// Get all elements of type TEntity in repository

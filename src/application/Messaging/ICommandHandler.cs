@@ -2,7 +2,7 @@
 
 using Neltic.Shared.Domain.Validator;
 
-namespace Neltic.Shared.Application.Abstractions.Messaging;
+namespace Neltic.Shared.Application.Messaging;
 
 public interface ICommandHandler<TCommand> : IRequestHandler<TCommand, Result>
     where TCommand : ICommand

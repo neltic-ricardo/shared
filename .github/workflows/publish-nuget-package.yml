@@ -4,32 +4,44 @@ on:
   workflow_dispatch: # Allow running the workflow manually from the GitHub UI
   push:
     branches:
-      - main      
+      - main
     tags:
-      - '*.*.*'
+      - "*.*.*"
   pull_request:
+    types: [closed]
     branches:
-      - '*'
+      - "*"
   release:
     types:
-      - published    # Run the workflow when a new GitHub release is published
+      - published # Run the workflow when a new GitHub release is published
 
 env:
-  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1 
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  BUILD_CONFIG: "Release"
 
 defaults:
   run:
-    shell: pwsh
+    shell: bash
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0 # Get all history to allow automatic versioning using MinVer             
+          fetch-depth: 0 # Get all history to allow automatic versioning using MinVer
       - name: Setup .NET # Install the .NET SDK indicated in the global.json file
-        uses: actions/setup-dotnet@v3       
-      # Create the NuGet package in the folder from the environment variable NuGetDirectory  
-      - run: dotnet build -c Release --nologo --verbosity quiet     
+        uses: actions/setup-dotnet@v3
+      - name: Create Folders
+        run: mkdir {packages,output,artifacts}
+      - name: Restore Nuget Packages
+        run: dotnet restore --packages packages -v q
+      - name: Build Solution
+        run: dotnet build -c $BUILD_CONFIG -v q --nologo --no-restore
+      - name: Packs NuGet Package.
+        run: dotnet pack -c $BUILD_CONFIG -v q --nologo
+      - name: Push Nuget Package
+        run: dotnet nuget push artifacts/**/*.nupkg -k $GITHUB_TOKEN -s https://api.nuget.org/v3/index.json --skip-duplicate
+        env:
+          GITHUB_TOKEN: ${{ secrets.NELTIC_NUGET_TOKEN }}

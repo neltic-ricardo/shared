@@ -14,7 +14,7 @@ public sealed class Email : ValueObject
     {
     }
 
-    public string Value { get; private set; }
+    public string Value { get; private set; } = string.Empty;
 
     public static Result<Email> Create(string email) =>
         Result.Create(email)

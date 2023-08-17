@@ -7,16 +7,15 @@ public sealed class LastName : ValueObject
 {
     public const int MaxLength = 50;
 
-    private LastName(string value)
-    {
-        Value = value;
-    }
+    private LastName(string value) 
+        => Value = value;
+    
 
     private LastName()
     {
     }
 
-    public string Value { get; private set; }
+    public string Value { get; private set; } = string.Empty;
 
     public static Result<LastName> Create(string lastName)
     {

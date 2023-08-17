@@ -6,28 +6,23 @@ public class MiddleName : ValueObject
 {
     public const int MaxLength = 50;
 
-    private MiddleName(string value)
-    {
-        Value = value;
-    }
+    public string Value { get; private set; } = string.Empty;
+
+    private MiddleName(string value) 
+        => Value = value;
+    
 
     private MiddleName()
     {
     }
 
-    public string Value { get; private set; } = string.Empty;
-
     public static Result<MiddleName> Create(string middleName)
     {
         if (string.IsNullOrWhiteSpace(middleName))
-        {
             return Result.Failure<MiddleName>(MiddleNameErrors.Empty);
-        }
 
         if (middleName.Length > MaxLength)
-        {
-            return Result.Failure<MiddleName>(MiddleNameErrors.TooLong) ;
-        }
+            return Result.Failure<MiddleName>(MiddleNameErrors.TooLong);
 
         return new MiddleName(middleName);
     }

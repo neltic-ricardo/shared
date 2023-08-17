@@ -5,14 +5,12 @@ namespace Neltic.Shared.Domain.Specification;
 /// A logic AND Specification
 /// </summary>
 /// <typeparam name="T">Type of entity that check this specification</typeparam>
-public class AndSpecification<T>
-   : CompositeSpecification<T>
-   where T : class
+public class AndSpecification<T> : CompositeSpecification<T> where T : class
 {
     #region Members
 
-    private ISpecification<T> _RightSideSpecification = null;
-    private ISpecification<T> _LeftSideSpecification = null;
+    private readonly ISpecification<T> _rightSideSpecification;
+    private readonly ISpecification<T> _leftSideSpecification;
 
     #endregion
 
@@ -31,8 +29,8 @@ public class AndSpecification<T>
         if (rightSide is null)
             throw new ArgumentNullException("rightSide");
 
-        this._LeftSideSpecification = leftSide;
-        this._RightSideSpecification = rightSide;
+        _leftSideSpecification = leftSide;
+        _rightSideSpecification = rightSide;
     }
 
     #endregion
@@ -44,7 +42,7 @@ public class AndSpecification<T>
     /// </summary>
     public override ISpecification<T> LeftSideSpecification
     {
-        get { return _LeftSideSpecification; }
+        get => _leftSideSpecification; 
     }
 
     /// <summary>
@@ -52,7 +50,7 @@ public class AndSpecification<T>
     /// </summary>
     public override ISpecification<T> RightSideSpecification
     {
-        get { return _RightSideSpecification; }
+        get => _rightSideSpecification; 
     }
 
     /// <summary>
@@ -61,11 +59,10 @@ public class AndSpecification<T>
     /// <returns><see cref="ISpecification{T}"/></returns>
     public override Expression<Func<T, bool>> SatisfiedBy()
     {
-        Expression<Func<T, bool>> left = _LeftSideSpecification.SatisfiedBy();
-        Expression<Func<T, bool>> right = _RightSideSpecification.SatisfiedBy();
+        var left = _leftSideSpecification.SatisfiedBy();
+        var right = _rightSideSpecification.SatisfiedBy();
 
-        return (left.And(right));
-
+        return left.And(right);
     }
 
     #endregion

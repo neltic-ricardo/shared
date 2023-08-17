@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
 namespace Neltic.Shared.Domain.Specification;
 /// <summary>
@@ -16,7 +14,7 @@ public static class ExpressionBuilder
     /// <param name="second">Expression to merge</param>
     /// <param name="merge">Function to merge</param>
     /// <returns>New merged expressions</returns>
-    public static Expression<T> Compose<T>(this Expression<T> first, Expression<T> second, Func<Expression, Expression, Expression> merge)
+    public static Expression<T>? Compose<T>(this Expression<T> first, Expression<T> second, Func<Expression, Expression, Expression> merge)
     {
         if (first is null || second is null || merge is null)
             return null;
@@ -38,10 +36,9 @@ public static class ExpressionBuilder
     /// <param name="first">Right Expression in AND operation</param>
     /// <param name="second">Left Expression in And operation</param>
     /// <returns>New AND expression</returns>
-    public static Expression<Func<T, bool>> And<T>(this Expression<Func<T, bool>> first, Expression<Func<T, bool>> second)
-    {
-        return first.Compose(second, Expression.And);
-    }
+    public static Expression<Func<T, bool>> And<T>(this Expression<Func<T, bool>> first, Expression<Func<T, bool>> second) 
+            => first.Compose(second, Expression.And);
+    
 
     /// <summary>
     /// Or operator
@@ -50,8 +47,6 @@ public static class ExpressionBuilder
     /// <param name="first">Right expression in OR operation</param>
     /// <param name="second">Left expression in OR operation</param>
     /// <returns>New Or expressions</returns>
-    public static Expression<Func<T, bool>> Or<T>(this Expression<Func<T, bool>> first, Expression<Func<T, bool>> second)
-    {
-        return first.Compose(second, Expression.Or);
-    }
+    public static Expression<Func<T, bool>> Or<T>(this Expression<Func<T, bool>> first, Expression<Func<T, bool>> second) 
+        => first.Compose(second, Expression.Or);
 }

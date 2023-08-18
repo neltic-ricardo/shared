@@ -1,0 +1,30 @@
+name: Publish NuGet Package
+
+on:
+  push:
+    branches:
+      - main
+      - features/**
+    tags:
+      - "*.*.*"
+  pull_request:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        configuration: [Debug, Release]
+
+    name: ubuntu-latest
+    runs-on: ubuntu-latest
+
+    env:
+      Solution_Name: Neltic.Shared.sln
+      DOTNET_NOLOGO: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - run: dotnet --info

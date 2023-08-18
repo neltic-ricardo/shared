@@ -8,8 +8,8 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryType>git</RepositoryType>
         <PackageOutputPath>..\..\artifacts</PackageOutputPath>
-        <BaseOutputPath>..\..\build</BaseOutputPath>
-        <OutputPath>..\..\build\</OutputPath>
+        <BaseOutputPath>..\..\output</BaseOutputPath>
+        <OutputPath>..\..\output\</OutputPath>
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>

@@ -11,8 +11,8 @@ public class OrSpecification<T>
 {
     #region Members
 
-    private ISpecification<T> _RightSideSpecification = null;
-    private ISpecification<T> _LeftSideSpecification = null;
+    private readonly ISpecification<T> _RightSideSpecification;
+    private readonly ISpecification<T> _LeftSideSpecification; 
 
     #endregion
 
@@ -31,8 +31,8 @@ public class OrSpecification<T>
         if (rightSide is null)
             throw new ArgumentNullException("rightSide");
 
-        this._LeftSideSpecification = leftSide;
-        this._RightSideSpecification = rightSide;
+        _LeftSideSpecification = leftSide;
+        _RightSideSpecification = rightSide;
     }
 
     #endregion
@@ -60,10 +60,10 @@ public class OrSpecification<T>
     /// <returns><see cref="ISpecification{T}"/></returns>
     public override Expression<Func<T, bool>> SatisfiedBy()
     {
-        Expression<Func<T, bool>> left = _LeftSideSpecification.SatisfiedBy();
-        Expression<Func<T, bool>> right = _RightSideSpecification.SatisfiedBy();
+        var left = _LeftSideSpecification.SatisfiedBy();
+        var right = _RightSideSpecification.SatisfiedBy();
 
-        return (left.Or(right));
+        return left.Or(right);
 
     }
 

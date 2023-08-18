@@ -8,7 +8,7 @@ namespace Neltic.Shared.Domain.Specification;
 /// </summary>
 public class ParameterRebinder : ExpressionVisitor
 {
-    private readonly Dictionary<ParameterExpression, ParameterExpression> map;
+    private readonly Dictionary<ParameterExpression, ParameterExpression> _map;
 
     /// <summary>
     /// Default construcotr
@@ -16,7 +16,7 @@ public class ParameterRebinder : ExpressionVisitor
     /// <param name="map">Map specification</param>
     public ParameterRebinder(Dictionary<ParameterExpression, ParameterExpression> map)
     {
-        this.map = map ?? new Dictionary<ParameterExpression, ParameterExpression>();
+        _map = map ?? new Dictionary<ParameterExpression, ParameterExpression>();
     }
     /// <summary>
     /// Replate parameters in expression with a Map information
@@ -36,10 +36,12 @@ public class ParameterRebinder : ExpressionVisitor
     protected override Expression VisitParameter(ParameterExpression p)
     {
         ParameterExpression replacement;
-        if (map.TryGetValue(p, out replacement))
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+        if (_map.TryGetValue(p, out replacement))
         {
             p = replacement;
         }
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
         return base.VisitParameter(p);
     }
